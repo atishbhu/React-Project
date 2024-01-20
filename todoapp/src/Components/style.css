@@ -1,0 +1,16 @@
+.input-field {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid lightgrey;
+}
+
+.add-btn {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid lightgrey;
+}
+
+.input-btn-wrapper {
+    display: flex;
+    gap: 10px;
+}
