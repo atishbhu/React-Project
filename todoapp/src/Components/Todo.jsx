@@ -1,4 +1,5 @@
 import React,{useState} from "react";
+import './style.css'
 
 
 const Todo = () =>  {
@@ -18,11 +19,14 @@ const Todo = () =>  {
 
     return (
         <div>
-          <input type="text"  value={value} 
-           onChange={handleChange}
-           placeholder="Enter value to add in List"
-          />
-          <button onClick={addTodo}>Add Todo</button>
+            <div className="input-btn-wrapper">
+                <input type="text"  value={value} 
+                onChange={handleChange}
+                placeholder="Enter value to add in List"
+                className="input-field"
+                />
+                <button onClick={addTodo} className="add-btn">Add Todo</button>
+          </div>
           <ul>
             {
                 todo.map((val,index) => {
