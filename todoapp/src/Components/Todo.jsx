@@ -1,9 +1,10 @@
 import React,{useState} from "react";
+import TodoList from "./TodoList"
 import './style.css'
 
 
 const Todo = () =>  {
-    const [value,setValue] = useState()
+    const [value,setValue] = useState('')
     const [todo, setTodo] = useState([])
 
     const handleChange = (e) => {
@@ -12,11 +13,30 @@ const Todo = () =>  {
     }
 
     const addTodo = () => {
-        setTodo([...todo,value])
+        const id = (new Date().getTime())
+        const newTodoData = {
+            id,
+            data:value
+        }
+        setTodo([...todo,newTodoData])
         setValue('')
     }
 
-
+    const handleEdit = (id, newData) => {
+        console.log('call')
+        const newTodo = todo.map((item) => {
+            if (item.id === id) {
+                return {
+                    ...item,
+                    data: newData
+                };
+            } else {
+                return item;
+            }
+        });
+        console.log('new', newTodo)
+        setTodo(newTodo)
+    };
     return (
         <div>
             <div className="input-btn-wrapper">
@@ -27,15 +47,7 @@ const Todo = () =>  {
                 />
                 <button onClick={addTodo} className="add-btn">Add Todo</button>
           </div>
-          <ul>
-            {
-                todo.map((val,index) => {
-                    return (
-                        <li key={index}>{val}</li>
-                    )
-                })
-            }
-          </ul>
+          <TodoList todo={todo} handleEdit={handleEdit}/>
        </div>
     )
 }
