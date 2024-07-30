@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useState } from "react";
+import { useTodo } from "./Hook/TodoHook";
 
 const TodoRender = () => {
   const [id, setId] = useState("1");
@@ -20,14 +20,7 @@ const TodoRender = () => {
 };
 
 function Todo({ id }) {
-  const [todo, setTodo] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get(`https://sum-server.100xdevs.com/todo?id=${id}`)
-      .then((res) => setTodo(res.data.todo));
-  }, [id]);
-
+  const todo = useTodo(id);
   return (
     <div>
       <h1>{todo.title}</h1>
